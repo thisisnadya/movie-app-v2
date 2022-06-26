@@ -1,45 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Nav from "../data/SideNavData";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { ProSidebar, Menu, MenuItem, SidebarHeader } from "react-pro-sidebar";
+import "react-pro-sidebar/dist/css/styles.css";
 
 function SideNav() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <SNav>
-      <div>
-        {Nav.map((item, index) => (
-          <NavItem to={item.path}>
-            {item.icon}
-            <p key={index}>{item.title}</p>
-          </NavItem>
+    <SProSidebar collapsed={isOpen}>
+      <SidebarHeader>
+        <GiHamburgerMenu onClick={() => setIsOpen(!isOpen)} />
+      </SidebarHeader>
+      <Menu>
+        {Nav.map((item) => (
+          <MenuItem icon={item.icon} style={{ fontSize: "16px" }}>
+            {item.title}
+            <Link to={item.path}></Link>
+          </MenuItem>
         ))}
-      </div>
-    </SNav>
+      </Menu>
+    </SProSidebar>
   );
 }
 
-const SNav = styled.div`
-  background-color: #2a2438;
-  color: white;
-  height: 100vh;
-  padding: 2rem;
-`;
-
-const NavItem = styled(NavLink)`
-  display: flex;
-  align-items: center;
-  margin: 0.5rem 0rem;
-  padding: 1rem 0rem;
-  font-size: 1.2rem;
-  text-decoration: none;
-  color: white;
-
-  p {
-    margin-left: 1rem;
-  }
-  &.active {
-    color: #aca5a5;
-  }
+const SProSidebar = styled(ProSidebar)`
+  min-height: 100vh;
+  position: fixed;
 `;
 
 export default SideNav;
