@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Nav from "../data/SideNavData";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ProSidebar, Menu, MenuItem, SidebarHeader } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
+import "../css/custom.css";
 
 function SideNav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,10 +16,10 @@ function SideNav() {
       </SidebarHeader>
       <Menu>
         {Nav.map((item) => (
-          <MenuItem icon={item.icon} style={{ fontSize: "16px" }}>
+          <SMenuItem icon={item.icon} style={{ fontSize: "16px" }}>
             {item.title}
             <Link to={item.path}></Link>
-          </MenuItem>
+          </SMenuItem>
         ))}
       </Menu>
     </SProSidebar>
@@ -28,6 +29,13 @@ function SideNav() {
 const SProSidebar = styled(ProSidebar)`
   min-height: 100vh;
   position: fixed;
+`;
+
+const SMenuItem = styled(MenuItem)`
+  color: #10f5cc;
+  svg {
+    font-size: 20px;
+  }
 `;
 
 export default SideNav;
