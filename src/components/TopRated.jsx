@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { Link } from "react-router-dom";
+import { Wrapper, SmallCard } from "./StyledComponents";
 
 function TopRated() {
   const [topRated, setTopRated] = useState([]);
@@ -52,7 +52,7 @@ function TopRated() {
       >
         {topRated.map((item) => (
           <SplideSlide key={item.id}>
-            <Card>
+            <SmallCard>
               <Link to={`movie/detail/${item.id}`}>
                 <img
                   className="img-fluid"
@@ -60,28 +60,12 @@ function TopRated() {
                   alt={item.title}
                 />
               </Link>
-            </Card>
+            </SmallCard>
           </SplideSlide>
         ))}
       </Splide>
     </Wrapper>
   );
 }
-
-const Wrapper = styled.div`
-  margin: 4rem 0rem;
-`;
-
-const Card = styled.div`
-  overflow: hidden;
-  min-height: 20rem;
-  position: relative;
-  border-radius: 1rem;
-  img {
-    border-radius: 1rem;
-    width: 100%;
-    height: 100%;
-  }
-`;
 
 export default TopRated;

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Similar from "../components/Similar";
+import Recommendations from "../components/Recommendations";
 import styled from "styled-components";
 import Loading from "../components/Loading";
 
@@ -81,7 +82,6 @@ function Detail() {
                       onClick={() => setSeasonNumber(season.season_number)}
                     >{`Season ${season.season_number}`}</Button>
                   ))}
-                  {/* <p>{detail.seasons[seasonNumber - 1].overview}</p> */}
                 </div>
               ) : (
                 ""
@@ -89,6 +89,7 @@ function Detail() {
             </div>
           </Wrapper>
           <Similar media={params.media_type} id={params.id} />
+          <Recommendations media={params.media_type} id={params.id} />
         </div>
       )}
     </div>
@@ -126,8 +127,7 @@ const Wrapper = styled.div`
       color: white;
       font-size: 1.2rem;
       display: inline-block;
-      /* border: 1px solid white; */
-      background-color: #470031;
+      background-color: #3a4f52;
       border-radius: 3rem;
       padding: 0.5rem 1rem;
       margin: 0.7rem 1rem 0.7rem 0rem;
@@ -142,7 +142,7 @@ const Wrapper = styled.div`
     margin: 0 auto;
 
     img {
-      max-height: initial;
+      max-height: max-content;
     }
     .detail {
       margin: 1rem 0rem;

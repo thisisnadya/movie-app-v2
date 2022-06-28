@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { Link } from "react-router-dom";
+import { Card, Gradient } from "./StyledComponents";
 
 function Discover() {
   const [discover, setDiscover] = useState([]);
@@ -58,61 +58,5 @@ function Discover() {
     </div>
   );
 }
-
-const Card = styled.div`
-  overflow: hidden;
-  min-height: 45rem;
-  height: 100%;
-  position: relative;
-  border-radius: 1rem;
-
-  img {
-    position: absolute;
-    border-radius: 1rem;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .overview {
-    position: absolute;
-    font-family: "Heebo", sans-serif;
-    z-index: 10;
-    bottom: 0%;
-    padding: 1rem 5rem;
-    color: white;
-    width: 80%;
-    font-weight: 500;
-    height: 45%;
-    h2 {
-      font-size: 4rem;
-    }
-    p {
-      font-weight: 300;
-      font-size: 1rem;
-      opacity: 0.5;
-      letter-spacing: 1px;
-    }
-    @media (max-width: 968px) {
-      text-align: center;
-      height: 30%;
-      width: 100%;
-      h2 {
-        font-size: 2.5rem;
-      }
-      p {
-        display: none;
-      }
-    }
-  }
-`;
-
-const Gradient = styled.div`
-  z-index: 3;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
-`;
 
 export default Discover;

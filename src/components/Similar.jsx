@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { Link } from "react-router-dom";
+import { Wrapper, SmallCard } from "./StyledComponents";
 
 function Similar({ media, id }) {
   const [similar, setSimilar] = useState([]);
@@ -18,7 +18,7 @@ function Similar({ media, id }) {
   };
 
   return (
-    <SimWrapper>
+    <Wrapper>
       <h1 className="py-3">Similar Shows</h1>
       <Splide
         options={{
@@ -44,8 +44,8 @@ function Similar({ media, id }) {
         }}
       >
         {similar.map((item) => (
-          <SplideSlide key={item.id}>
-            <Card>
+          <SplideSlide>
+            <SmallCard key={item.id}>
               <Link to={`/${media}/detail/${item.id}`}>
                 <img
                   className="img-fluid"
@@ -53,28 +53,12 @@ function Similar({ media, id }) {
                   alt={item.title}
                 />
               </Link>
-            </Card>
+            </SmallCard>
           </SplideSlide>
         ))}
       </Splide>
-    </SimWrapper>
+    </Wrapper>
   );
 }
-
-const SimWrapper = styled.div`
-  margin: 4rem 0rem;
-`;
-
-const Card = styled.div`
-  overflow: hidden;
-  min-height: 20rem;
-  position: relative;
-  border-radius: 1rem;
-  img {
-    border-radius: 1rem;
-    width: 100%;
-    height: 100%;
-  }
-`;
 
 export default Similar;

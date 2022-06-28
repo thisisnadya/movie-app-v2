@@ -2,21 +2,33 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Nav from "../data/SideNavData";
 import { Link } from "react-router-dom";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { BsArrowRightCircleFill, BsArrowLeftCircleFill } from "react-icons/bs";
 import { ProSidebar, Menu, MenuItem, SidebarHeader } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
 import "../css/custom.css";
 
 function SideNav() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   return (
     <SProSidebar collapsed={isOpen}>
-      <SidebarHeader>
-        <GiHamburgerMenu onClick={() => setIsOpen(!isOpen)} />
+      <SidebarHeader
+        style={{ padding: "1.5rem", color: "#FFF", textAlign: "center" }}
+      >
+        {isOpen ? (
+          <BsArrowRightCircleFill
+            style={{ fontSize: "16px" }}
+            onClick={() => setIsOpen(!isOpen)}
+          />
+        ) : (
+          <BsArrowLeftCircleFill
+            style={{ fontSize: "16px" }}
+            onClick={() => setIsOpen(!isOpen)}
+          />
+        )}
       </SidebarHeader>
       <Menu>
-        {Nav.map((item) => (
-          <SMenuItem icon={item.icon} style={{ fontSize: "16px" }}>
+        {Nav.map((item, index) => (
+          <SMenuItem key={index} icon={item.icon} style={{ fontSize: "16px" }}>
             {item.title}
             <Link to={item.path}></Link>
           </SMenuItem>
