@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Nav from "../data/SideNavData";
+import { Nav, Personal, NavAccount } from "../data/SideNavData";
 import { Link } from "react-router-dom";
 import { BsArrowRightCircleFill, BsArrowLeftCircleFill } from "react-icons/bs";
 import { ProSidebar, Menu, MenuItem, SidebarHeader } from "react-pro-sidebar";
@@ -28,7 +28,23 @@ function SideNav() {
       </SidebarHeader>
       <Menu>
         {Nav.map((item, index) => (
-          <SMenuItem key={index} icon={item.icon} style={{ fontSize: "16px" }}>
+          <SMenuItem key={index} icon={item.icon} style={{ fontSize: "18px" }}>
+            {item.title}
+            <Link to={item.path}></Link>
+          </SMenuItem>
+        ))}
+      </Menu>
+      <Menu>
+        {Personal.map((item, index) => (
+          <SMenuItem key={index} icon={item.icon} style={{ fontSize: "18px" }}>
+            {item.title}
+            <Link to={item.path}></Link>
+          </SMenuItem>
+        ))}
+      </Menu>
+      <Menu>
+        {NavAccount.map((item, index) => (
+          <SMenuItem key={index} icon={item.icon} style={{ fontSize: "18px" }}>
             {item.title}
             <Link to={item.path}></Link>
           </SMenuItem>
@@ -45,6 +61,7 @@ const SProSidebar = styled(ProSidebar)`
 
 const SMenuItem = styled(MenuItem)`
   color: #10f5cc;
+  font-family: "Josefin Sans", sans-serif;
   svg {
     font-size: 20px;
   }
