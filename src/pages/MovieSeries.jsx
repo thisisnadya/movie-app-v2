@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loading from "../components/Loading";
-import Genres from "../components/Genres";
+import Genres from "./Genres";
 
 function MovieSeries() {
   let params = useParams();
@@ -28,7 +28,6 @@ function MovieSeries() {
 
   return (
     <div>
-      <Genres />
       <Grid className="mt-5">
         {isLoading ? (
           <Loading />

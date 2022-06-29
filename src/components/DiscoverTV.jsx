@@ -50,7 +50,7 @@ function DiscoverTV() {
               <Link to={"/tv/detail/" + item.id}>
                 <p>{item.name}</p>
                 <img
-                  // className="img-fluid"
+                  className="img-fluid"
                   src={`https://image.tmdb.org/t/p/w500${item.backdrop_path}`}
                   alt={item.name}
                 />
