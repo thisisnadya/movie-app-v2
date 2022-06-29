@@ -101,6 +101,7 @@ const Wrapper = styled.div`
 
   img {
     border-radius: 1rem;
+    align-self: flex-start;
   }
 
   .detail {
@@ -142,7 +143,8 @@ const Wrapper = styled.div`
     margin: 0 auto;
 
     img {
-      max-height: max-content;
+      max-height: fit-content;
+      align-self: center;
     }
     .detail {
       margin: 1rem 0rem;
@@ -164,6 +166,10 @@ const Button = styled.button`
   color: white;
   border: 1px solid white;
   margin-right: 1rem;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  font-family: "Josefin Sans", sans-serif;
+  border-radius: 8px;
   &.active {
     background-color: white;
     color: black;
