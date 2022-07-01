@@ -1,37 +1,60 @@
-import { MediumCard, Gradient } from "../components/StyledComponents";
+import { Gradient } from "../components/StyledComponents";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
+import GENRES from "../data/Genres";
 
 function Genres() {
-  const genres = [
-    { id: 12, name: "Adventure" },
-    { id: 16, name: "Animation" },
-    { id: 35, name: "Comedy" },
-    { id: 80, name: "Crime" },
-    { id: 99, name: "Documentary" },
-    { id: 18, name: "Drama" },
-    { id: 14, name: "Fantasy" },
-    { id: 36, name: "History" },
-    { id: 27, name: "Horror" },
-    { id: 9648, name: "Mystery" },
-    { id: 10749, name: "Romance" },
-    { id: 878, name: "Science Fiction" },
-    { id: 53, name: "Thriller" },
-    { id: 10752, name: "War" },
-  ];
-
   return (
-    <div className="d-flex flex-wrap">
+    <div>
       <h1>Movies</h1>
-      {genres.map((genre) => (
-        <MediumCard>
-          <Link to="tv/detail">
-            <p>{genre.name}</p>
-            <Gradient />
-          </Link>
-        </MediumCard>
-      ))}
+      <div className="d-flex flex-wrap justify-content-around align-items-center mt-5">
+        {GENRES &&
+          GENRES.map((item) => (
+            <GenreCard key={item.id}>
+              <Link to={`/genres/movie/${item.id}`}>
+                <img className="img-fluid" src={item.image} alt="" />
+                <p>{item.name}</p>
+              </Link>
+              <Gradient />
+            </GenreCard>
+          ))}
+      </div>
     </div>
   );
 }
+
+const GenreCard = styled.div`
+  position: relative;
+  height: 200px;
+  width: 350px;
+  margin-bottom: 2rem;
+  border-radius: 1rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    border-radius: 1rem;
+    object-fit: cover;
+  }
+  p {
+    position: absolute;
+    z-index: 10;
+    left: 50%;
+    bottom: 0%;
+    transform: translate(-50%, 0%);
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.5rem;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Heebo", sans-serif;
+  }
+`;
 
 export default Genres;

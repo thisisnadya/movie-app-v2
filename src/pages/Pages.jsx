@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import Searched from "./Searched";
 import Detail from "./Detail";
 import Genres from "./Genres";
+import ShowByGenres from "./ShowByGenres";
 
 function Pages() {
   return (
@@ -14,6 +15,7 @@ function Pages() {
       <Route path="/searched/:search" element={<Searched />} />
       <Route path="/:media_type/detail/:id" element={<Detail />} />
       <Route path="/genres" element={<Genres />} />
+      <Route path="genres/movie/:genre_id" element={<ShowByGenres />} />
     </Routes>
   );
 }

@@ -11,14 +11,14 @@ function ShowByGenres() {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    getResults(params.type, params.id);
-  }, [params.id, page]);
+    getResults(params.genre_id);
+  }, [params.genre_id, page]);
 
-  const getResults = async (type, id) => {
+  const getResults = async (id) => {
     setIsLoading(true);
     try {
       const data = await fetch(
-        `https://api.themoviedb.org/3/discover/${type}?api_key=${process.env.REACT_APP_API_KEY}&with_genres=${id}&page=${page}`
+        `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=${id}&page=${page}`
       );
       const result = await data.json();
       setResultsByGenre(result.results);
@@ -34,7 +34,7 @@ function ShowByGenres() {
           resultsByGenre.map((item) => {
             return (
               <Card key={item.id}>
-                <Link to={`/${params.type}/detail/${item.id}`}>
+                <Link to={`/movie/detail/${item.id}`}>
                   <img
                     src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
                     alt={item.title}
