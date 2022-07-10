@@ -4,30 +4,17 @@ import Similar from "../components/Similar";
 import Recommendations from "../components/Recommendations";
 import styled from "styled-components";
 import Loading from "../components/Loading";
+import { AiFillHeart } from "react-icons/ai";
 
 function Detail() {
   let params = useParams();
   const [detail, setDetail] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [seasonNumber, setSeasonNumber] = useState();
-  const [detailSeason, setDetailSeason] = useState({});
 
   useEffect(() => {
     getDetail(params.media_type, params.id);
   }, [params.id]);
-
-  useEffect(() => {
-    getDetailSeason(params.id, seasonNumber);
-  }, [seasonNumber]);
-
-  const getDetailSeason = async (id, number) => {
-    const api = await fetch(
-      `https://api.themoviedb.org/3/tv/${id}/season/${number}?api_key=${process.env.REACT_APP_API_KEY}`
-    );
-    const data = await api.json();
-    setDetailSeason(data);
-    console.log(data);
-  };
 
   const getDetail = async (type, id) => {
     setIsLoading(true);
@@ -86,6 +73,9 @@ function Detail() {
               ) : (
                 ""
               )}
+              <Button className="mt-5">
+                Add To Watchlist <AiFillHeart />
+              </Button>
             </div>
           </Wrapper>
           <Similar media={params.media_type} id={params.id} />
