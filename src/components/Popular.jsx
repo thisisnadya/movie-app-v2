@@ -51,8 +51,8 @@ function Popular() {
         }}
       >
         {trending.map((item) => (
-          <SplideSlide key={item.id}>
-            <SmallCard>
+          <SplideSlide>
+            <SmallCard key={item.id}>
               <Link to={`/${item.media_type}/detail/${item.id}`}>
                 <img
                   className="img-fluid"

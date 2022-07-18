@@ -4,13 +4,16 @@ import Similar from "../components/Similar";
 import Recommendations from "../components/Recommendations";
 import styled from "styled-components";
 import Loading from "../components/Loading";
-import { AiFillHeart } from "react-icons/ai";
+import { AiFillHeart, AiFillStar } from "react-icons/ai";
+import { WatchlistContext } from "../context/WatchlistContext";
+import { useContext } from "react";
 
 function Detail() {
   let params = useParams();
   const [detail, setDetail] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [seasonNumber, setSeasonNumber] = useState();
+  const [watchlist, setWatchlist] = useContext(WatchlistContext);
 
   useEffect(() => {
     getDetail(params.media_type, params.id);
@@ -28,6 +31,19 @@ function Detail() {
     } catch (e) {}
     setIsLoading(false);
   };
+
+  const addToWatchlist = () => {
+    setWatchlist((prevWatchlist) => [
+      ...prevWatchlist,
+      {
+        title: detail.title ? detail.title : detail.original_name,
+        watchlist: true,
+        id: detail.id,
+        type: params.media_type,
+      },
+    ]);
+  };
+
   return (
     <div>
       {isLoading ? (
@@ -54,7 +70,9 @@ function Detail() {
               ) : (
                 <h2>{detail.original_name}</h2>
               )}
-              <h4 className="rate">{detail.vote_average}</h4>
+              <h4 className="rate">
+                <AiFillStar /> {detail.vote_average}
+              </h4>
               {detail.genres?.map((genre) => (
                 <span key={genre.id}>{genre.name}</span>
               ))}
@@ -73,7 +91,7 @@ function Detail() {
               ) : (
                 ""
               )}
-              <Button className="mt-5">
+              <Button className="mt-5" onClick={addToWatchlist}>
                 Add To Watchlist <AiFillHeart />
               </Button>
             </div>
@@ -122,6 +140,14 @@ const Wrapper = styled.div`
       border-radius: 3rem;
       padding: 0.5rem 1rem;
       margin: 0.7rem 1rem 0.7rem 0rem;
+    }
+    .rate {
+      display: flex;
+      align-items: center;
+      svg {
+        color: yellow;
+        margin-right: 3px;
+      }
     }
   }
 

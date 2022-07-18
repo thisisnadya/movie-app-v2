@@ -45,8 +45,8 @@ function DiscoverTV() {
         }}
       >
         {discover.map((item) => (
-          <SplideSlide key={item.id}>
-            <MediumCard>
+          <SplideSlide>
+            <MediumCard key={item.id}>
               <Link to={"/tv/detail/" + item.id}>
                 <p>{item.name}</p>
                 <img

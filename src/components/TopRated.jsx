@@ -51,8 +51,8 @@ function TopRated() {
         }}
       >
         {topRated.map((item) => (
-          <SplideSlide key={item.id}>
-            <SmallCard>
+          <SplideSlide>
+            <SmallCard key={item.id}>
               <Link to={`movie/detail/${item.id}`}>
                 <img
                   className="img-fluid"

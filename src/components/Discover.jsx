@@ -37,8 +37,8 @@ function Discover() {
         }}
       >
         {discover.map((item) => (
-          <SplideSlide key={item.id}>
-            <Card>
+          <SplideSlide>
+            <Card key={item.id}>
               <Link to={"/movie/detail/" + item.id}>
                 <div className="overview">
                   <h2>{item.title}</h2>

@@ -6,6 +6,7 @@ import Searched from "./Searched";
 import Detail from "./Detail";
 import Genres from "./Genres";
 import ShowByGenres from "./ShowByGenres";
+import Watchlist from "./Watchlist";
 
 function Pages() {
   return (
@@ -16,6 +17,7 @@ function Pages() {
       <Route path="/:media_type/detail/:id" element={<Detail />} />
       <Route path="/genres" element={<Genres />} />
       <Route path="genres/movie/:genre_id" element={<ShowByGenres />} />
+      <Route path="/watchlist" element={<Watchlist />} />
     </Routes>
   );
 }
