@@ -2,31 +2,24 @@ import { useEffect, useState } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { Link } from "react-router-dom";
-import { Wrapper, SmallCard } from "./StyledComponents";
+import { Wrapper, SmallCard } from "../styled/StyledComponents";
 
-function TopRated() {
-  const [topRated, setTopRated] = useState([]);
+function Similar({ media, id }) {
+  const [similar, setSimilar] = useState([]);
   useEffect(() => {
-    getTopRated();
-  }, []);
-  const getTopRated = async () => {
-    const check = localStorage.getItem("top_rated");
-
-    if (check) {
-      setTopRated(JSON.parse(check));
-    } else {
-      const data = await fetch(
-        `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}`
-      );
-      const result = await data.json();
-      localStorage.setItem("top_rated", JSON.stringify(result.results));
-      setTopRated(result.results);
-    }
+    getSimilar(media, id);
+  }, [media, id]);
+  const getSimilar = async (type, id) => {
+    const data = await fetch(
+      `https://api.themoviedb.org/3/${type}/${id}/similar?api_key=${process.env.REACT_APP_API_KEY}`
+    );
+    const result = await data.json();
+    setSimilar(result.results);
   };
 
   return (
     <Wrapper>
-      <h1 className="py-3">Top Rated Movies</h1>
+      <h1 className="py-3">Similar Shows</h1>
       <Splide
         options={{
           perPage: 5,
@@ -50,10 +43,10 @@ function TopRated() {
           },
         }}
       >
-        {topRated.map((item) => (
+        {similar.map((item) => (
           <SplideSlide>
             <SmallCard key={item.id}>
-              <Link to={`movie/detail/${item.id}`}>
+              <Link to={`/${media}/detail/${item.id}`}>
                 <img
                   className="img-fluid"
                   src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
@@ -68,4 +61,4 @@ function TopRated() {
   );
 }
 
-export default TopRated;
+export default Similar;

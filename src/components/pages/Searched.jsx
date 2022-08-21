@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import { Grid, MiniCard, NextPage } from "../styled/StyledComponents";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Loading from "../components/Loading";
+import Loading from "../imports/Loading";
 
 function Searched() {
   const params = useParams();
@@ -33,14 +33,14 @@ function Searched() {
         <Grid className="mt-5">
           {searched.map((item) => {
             return (
-              <Card key={item.id}>
+              <MiniCard key={item.id}>
                 <Link to={`/${item.media_type}/detail/${item.id}`}>
                   <img
                     src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
                     alt={item.title}
                   />
                 </Link>
-              </Card>
+              </MiniCard>
             );
           })}
         </Grid>
@@ -49,39 +49,5 @@ function Searched() {
     </div>
   );
 }
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 12rem);
-  justify-content: center;
-  grid-gap: 3rem;
-`;
-
-const Card = styled.div`
-  img {
-    border-radius: 1rem;
-    width: 100%;
-    height: 100%;
-  }
-  a {
-    text-decoration: none;
-  }
-  h4 {
-    text-align: center;
-    padding: 1rem;
-  }
-`;
-
-const NextPage = styled.p`
-  margin-top: 1.5rem;
-  font-size: 1rem;
-  color: white;
-  text-align: right;
-  text-decoration: underline;
-  cursor: pointer;
-  &:hover {
-    color: #797575;
-  }
-`;
 
 export default Searched;

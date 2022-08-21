@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { Link } from "react-router-dom";
-import { Card, Gradient } from "./StyledComponents";
+import { Card, Gradient } from "../styled/StyledComponents";
 
 function Discover() {
   const [discover, setDiscover] = useState([]);

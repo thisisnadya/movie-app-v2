@@ -6,18 +6,18 @@ export const WatchlistProvider = (props) => {
   const [watchlist, setWatchlist] = useState([
     {
       title: "Papillon",
-      watchlist: true,
       id: 1234,
+      type: "movie",
     },
     {
       title: "Django Unchained",
-      watchlist: true,
       id: 1235,
+      type: "movie",
     },
     {
       title: "ATM",
-      watchlist: true,
       id: 1236,
+      type: "movie",
     },
   ]);
   return (

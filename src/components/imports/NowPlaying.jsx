@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { Link } from "react-router-dom";
-import { Wrapper, SmallCard } from "./StyledComponents";
+import { Wrapper, SmallCard } from "../styled/StyledComponents";
 
 function NowPlaying() {
   const [nowPlaying, setNowPlaying] = useState([]);
@@ -35,6 +35,9 @@ function NowPlaying() {
           drag: "free",
           gap: "3rem",
           breakpoints: {
+            1600: {
+              perPage: 4,
+            },
             1200: {
               perPage: 3,
             },

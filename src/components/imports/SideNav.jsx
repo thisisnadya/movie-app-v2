@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Nav, Personal, NavAccount } from "../data/SideNavData";
+import { Nav, Personal, NavAccount } from "../../data/SideNavData";
 import { Link } from "react-router-dom";
 import { BsArrowRightCircleFill, BsArrowLeftCircleFill } from "react-icons/bs";
 import { ProSidebar, Menu, MenuItem, SidebarHeader } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
-import "../css/custom.css";
+import "../../css/custom.css";
 
 function SideNav() {
   const [isOpen, setIsOpen] = useState(true);

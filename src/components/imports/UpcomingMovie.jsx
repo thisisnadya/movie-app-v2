@@ -2,31 +2,24 @@ import { useEffect, useState } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { Link } from "react-router-dom";
-import { Wrapper, SmallCard } from "./StyledComponents";
+import { Wrapper, SmallCard } from "../styled/StyledComponents";
 
-function Popular() {
-  const [trending, setTrending] = useState([]);
+function UpcomingMovie() {
+  const [upcoming, setUpcoming] = useState([]);
   useEffect(() => {
     getTrending();
   }, []);
   const getTrending = async () => {
-    const check = localStorage.getItem("trending");
-
-    if (check) {
-      setTrending(JSON.parse(check));
-    } else {
-      const data = await fetch(
-        `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}`
-      );
-      const result = await data.json();
-      localStorage.setItem("trending", JSON.stringify(result.results));
-      setTrending(result.results);
-    }
+    const data = await fetch(
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}`
+    );
+    const result = await data.json();
+    setUpcoming(result.results);
   };
 
   return (
     <Wrapper>
-      <h1 className="py-3">Trending</h1>
+      <h1 className="py-3">Upcoming Movies</h1>
       <Splide
         options={{
           perPage: 5,
@@ -50,10 +43,10 @@ function Popular() {
           },
         }}
       >
-        {trending.map((item) => (
+        {upcoming.map((item) => (
           <SplideSlide>
             <SmallCard key={item.id}>
-              <Link to={`/${item.media_type}/detail/${item.id}`}>
+              <Link to={`/movie/detail/${item.id}`}>
                 <img
                   className="img-fluid"
                   src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
@@ -68,4 +61,4 @@ function Popular() {
   );
 }
 
-export default Popular;
+export default UpcomingMovie;

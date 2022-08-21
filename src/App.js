@@ -1,7 +1,7 @@
-import SideNav from "./components/SideNav";
-import Pages from "./pages/Pages";
-import Search from "./components/Search";
-import HomeNav from "./components/HomeNav";
+import SideNav from "./components/imports/SideNav";
+import Pages from "./components/pages/Pages";
+import Search from "./components/imports/Search";
+import HomeNav from "./components/imports/HomeNav";
 import styled from "styled-components";
 import { WatchlistProvider } from "./context/WatchlistContext";
 import { BrowserRouter } from "react-router-dom";

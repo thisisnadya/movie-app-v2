@@ -2,24 +2,31 @@ import { useEffect, useState } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { Link } from "react-router-dom";
-import { Wrapper, SmallCard } from "./StyledComponents";
+import { Wrapper, SmallCard } from "../styled/StyledComponents";
 
-function Similar({ media, id }) {
-  const [similar, setSimilar] = useState([]);
+function Popular() {
+  const [trending, setTrending] = useState([]);
   useEffect(() => {
-    getSimilar(media, id);
-  }, [media, id]);
-  const getSimilar = async (type, id) => {
-    const data = await fetch(
-      `https://api.themoviedb.org/3/${type}/${id}/similar?api_key=${process.env.REACT_APP_API_KEY}`
-    );
-    const result = await data.json();
-    setSimilar(result.results);
+    getTrending();
+  }, []);
+  const getTrending = async () => {
+    const check = localStorage.getItem("trending");
+
+    if (check) {
+      setTrending(JSON.parse(check));
+    } else {
+      const data = await fetch(
+        `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}`
+      );
+      const result = await data.json();
+      localStorage.setItem("trending", JSON.stringify(result.results));
+      setTrending(result.results);
+    }
   };
 
   return (
     <Wrapper>
-      <h1 className="py-3">Similar Shows</h1>
+      <h1 className="py-3">Trending</h1>
       <Splide
         options={{
           perPage: 5,
@@ -43,10 +50,10 @@ function Similar({ media, id }) {
           },
         }}
       >
-        {similar.map((item) => (
+        {trending.map((item) => (
           <SplideSlide>
             <SmallCard key={item.id}>
-              <Link to={`/${media}/detail/${item.id}`}>
+              <Link to={`/${item.media_type}/detail/${item.id}`}>
                 <img
                   className="img-fluid"
                   src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
@@ -61,4 +68,4 @@ function Similar({ media, id }) {
   );
 }
 
-export default Similar;
+export default Popular;

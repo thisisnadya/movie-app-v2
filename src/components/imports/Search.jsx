@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styled from "styled-components";
+import { Form } from "../styled/StyledComponents";
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -26,31 +26,5 @@ function Search() {
     </Form>
   );
 }
-
-const Form = styled.form`
-  margin: 2rem auto;
-  position: relative;
-  input {
-    display: block;
-    margin: 0 auto;
-    border: none;
-    outline: none;
-    padding: 0.5rem 3rem;
-    width: 100%;
-    border: 2px solid #3a4f52;
-    background: transparent;
-    border-radius: 2rem;
-    color: white;
-    font-size: 1.2rem;
-  }
-  svg {
-    position: absolute;
-    top: 50%;
-    left: 0%;
-    transform: translate(100%, -50%);
-    color: white;
-    font-size: 1.2rem;
-  }
-`;
 
 export default Search;

@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import { SFooter } from "../styled/StyledComponents";
+
 function Footer() {
   return (
     <SFooter>
@@ -8,11 +9,5 @@ function Footer() {
     </SFooter>
   );
 }
-
-const SFooter = styled.div`
-  margin-top: 3rem;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-`;
 
 export default Footer;
